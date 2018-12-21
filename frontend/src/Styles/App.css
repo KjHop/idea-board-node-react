@@ -1,0 +1,9 @@
+.App{
+  width:50vw;
+  margin-left:25vw;
+}
+header > h1{
+  text-align:center;
+  height:10vh;
+  font-size:3vw;
+}

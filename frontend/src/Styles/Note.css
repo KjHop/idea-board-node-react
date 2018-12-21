@@ -1,0 +1,28 @@
+.Note{
+    background-color:#fff2b7;
+    width:30%;
+    margin:3%;
+    margin-left:0;
+}
+.Note > form {
+    width:100%;
+}
+.Note > form > input{
+    background-color:inherit;
+    width:90%;
+    margin-top:0.5vw;
+    margin-bottom:5px;
+    margin-left:1px;
+    border: 0.5px dashed gray;
+    font-size:1vw;
+}
+.Note > form > textarea{
+    padding:2px 0px;
+    background-color:inherit;
+    width:90%;
+    margin-left:1px;
+    margin-bottom:0.5vw;
+    border: 0.5px dashed gray;
+    font-size:1vw;
+    resize: none;
+}

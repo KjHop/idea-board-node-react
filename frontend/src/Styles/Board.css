@@ -1,0 +1,20 @@
+.Board{
+    width:100%;
+    display: flex;
+    flex-wrap:wrap;
+}
+button{
+    padding:10px;
+    font-size:25px;
+    background-color:#0545af;
+    color:white;
+    border:none;
+    margin-right:1vw;
+  }
+  
+  span{
+    font-size:25px;
+  }
+  select{
+    font-size:20px;
+  }
