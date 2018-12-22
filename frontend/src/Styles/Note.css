@@ -7,7 +7,7 @@
 .Note > form {
     width:100%;
 }
-.Note > form > input{
+.Note > form > input[type="text"]{
     background-color:inherit;
     width:90%;
     margin-top:0.5vw;

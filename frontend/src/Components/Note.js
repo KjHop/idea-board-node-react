@@ -4,31 +4,50 @@ import "../Styles/Note.css";
 class Note extends React.Component{
     constructor(){
         super();
-        this.noteUpdate = this.noteUpdate.bind(this);
+        this.updateNote = this.updateNote.bind(this);
+        this.deleteNote = this.deleteNote.bind(this);
         this.state = {
             title: "",
-            description: ""
+            description: "",
+            titleBorder: "0.5px dashed gray",
+            descriptionBorder: "0.5px dashed gray"
         }
     }
 
-    noteUpdate(){
-        console.log(this.state);
+    updateNote(){
+        //Send note to database
+    }
+
+    deleteNote(e){
+        e.preventDefault();
+        console.log(this.props)
     }
 
     changeTitle(e){
-        this.setState({title:e.target.value})
+        if(e.target.value===""){
+            this.setState({titleBorder:'0.5px dashed gray'});
+        }else{
+            this.setState({titleBorder: 'none'});
+        }
+        this.setState({title:e.target.value});
     }
 
     changeDescription(e){
+        if(e.target.value===""){
+            this.setState({descriptionBorder:'0.5px dashed gray'});
+        }else{
+            this.setState({descriptionBorder: 'none'});
+        }
         this.setState({description:e.target.value})
     }
 
     render(){
         return(
             <div className="Note">
-                <form onBlur={this.noteUpdate}>
-                    <input type="text" onChange={e=>this.changeTitle(e)}/>
-                    <textarea rows="7" onChange={e=>this.changeDescription(e)}></textarea>
+                <form onBlur={this.updateNote}>
+                    <input type="text" onChange={e=>this.changeTitle(e)} style={{border:this.state.titleBorder}}/>
+                    <textarea rows="7" onChange={e=>this.changeDescription(e)} style={{border:this.state.descriptionBorder}}></textarea>
+                    {this.props.button}
                 </form>
             </div>
         );
