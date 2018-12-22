@@ -9,34 +9,33 @@ class Board extends React.Component{
         super();
         this.addNote = this.addNote.bind(this);
         this.deleteNote = this.deleteNote.bind(this);
-        this.buildList = this.buildList.bind(this);
+        this.refresh = this.refresh.bind(this);
         this.state = {
             numberOfNotes:0,
             listOfNotes: []
         }
     }
 
-    addNote(){
-        this.buildList();
-        this.setState({numberOfNotes:this.state.numberOfNotes+1});
+    refresh(){
+        console.log(this.state);
     }
 
-    buildList(){
-        let newList = []
-        for(let i=0; i<=this.state.numberOfNotes; i++){
-            let button = <button onClick={(e)=>this.deleteNote(e, i)}>Delete</button>;
-            newList.push(<Note key={i} id={i} button={button}/>);
-        }
-        console.log(this.state);
-        this.setState({listOfNotes:newList});
+    addNote(){
+        let newList = this.state.listOfNotes;
+        let i = this.state.numberOfNotes;
+        let button = <button onClick={(e)=>this.deleteNote(e, i)}>Delete</button>;
+        newList.push(<Note key={i} id={i} button={button}/>);
+        this.setState({
+            numberOfNotes:this.state.numberOfNotes+1,
+            listOfNotes: newList
+        });
     }
 
     deleteNote(e, i){
         e.preventDefault();
-        console.log(this.props);
+        console.log(e.parentElement);
         let newList = this.state.listOfNotes;
         newList.splice(i,1);
-        console.log(this.state);
         this.setState({
             numberOfNotes:this.state.numberOfNotes-1,
             listOfNotes:newList
@@ -47,6 +46,7 @@ class Board extends React.Component{
         return(
             <div>
                 <button onClick={this.addNote}>Add Idea</button>
+                <button onClick={this.refresh}>Refresh</button>
                 <span>Sort ideas by:</span>
                 <select>
                     <option value="date">Date created</option>

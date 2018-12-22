@@ -48,6 +48,7 @@ class Note extends React.Component{
                     <input type="text" onChange={e=>this.changeTitle(e)} style={{border:this.state.titleBorder}}/>
                     <textarea rows="7" onChange={e=>this.changeDescription(e)} style={{border:this.state.descriptionBorder}}></textarea>
                     {this.props.button}
+                    {this.props.id}
                 </form>
             </div>
         );
