@@ -1,11 +1,11 @@
 import * as React from 'react';
 import "../Styles/Note.css";
+import * as axios from 'axios';
 
 class Note extends React.Component{
     constructor(){
         super();
         this.updateNote = this.updateNote.bind(this);
-        this.deleteNote = this.deleteNote.bind(this);
         this.state = {
             title: "",
             description: "",
@@ -14,13 +14,20 @@ class Note extends React.Component{
         }
     }
 
-    updateNote(){
-        //Send note to database
-    }
-
-    deleteNote(e){
-        e.preventDefault();
-        console.log(this.props)
+    updateNote(id, title, description){
+        const date = new Date();
+        axios.put("http://192.168.8.100:8000", {
+            "id":id,
+            "title":title,
+            "description": description,
+            "date":  date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()
+        })
+        .then(response=>{
+            console.log(response.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
     }
 
     changeTitle(e){
@@ -44,11 +51,10 @@ class Note extends React.Component{
     render(){
         return(
             <div className="Note">
-                <form onBlur={this.updateNote}>
-                    <input type="text" onChange={e=>this.changeTitle(e)} style={{border:this.state.titleBorder}}/>
-                    <textarea rows="7" onChange={e=>this.changeDescription(e)} style={{border:this.state.descriptionBorder}}></textarea>
+                <form onBlur={this.updateNote(this.props.id, this.state.title, this.state.description)}>
+                    <input type="text" onChange={e=>this.changeTitle(e)} style={{border:this.state.titleBorder}} value={this.props.title}/>
+                    <textarea rows="7" onChange={e=>this.changeDescription(e)} style={{border:this.state.descriptionBorder}} value={this.props.description}></textarea>
                     {this.props.button}
-                    {this.props.id}
                 </form>
             </div>
         );

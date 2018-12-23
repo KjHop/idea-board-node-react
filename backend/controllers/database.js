@@ -28,7 +28,7 @@ module.exports = app =>{
         pool.query(sql, (error, result)=>{
             if (error) throw error;
             console.log("1 record inserted");
-            response.send();
+            response.send("1 record inserted");
         });
     });
     app.delete("/", (request, response)=>{
@@ -36,7 +36,7 @@ module.exports = app =>{
         pool.query(sql, (error, result)=>{
             if(error) throw error;
             console.log("1 record deleted");
-            response.send();
+            response.send("1 record deleted");
         });
     });
     app.put("/", (request, response)=>{
@@ -44,7 +44,7 @@ module.exports = app =>{
         pool.query(sql, (error,result)=>{
             if(error) throw error;
             console.log("1 record updated");
-            response.send();
+            response.send("1 record updated");
         });
     });
 }
