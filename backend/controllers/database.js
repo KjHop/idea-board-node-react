@@ -23,6 +23,16 @@ module.exports = app =>{
             response.send(result);
         });
     });
+
+    //Get one idea
+    app.get("/:id", (request, response)=>{
+        pool.query("SELECT * FROM ideas where id="+request.params.id, (error, result, field)=>{
+            if(error) throw error;
+            console.log("Listed all records");
+            response.send(result);
+        });
+    });
+
     app.post('/', (request, response)=>{
         const sql = "INSERT INTO ideas(title, description, date) VALUES ('"+request.body.title+"','"+request.body.description+"','"+request.body.date+"')";
         pool.query(sql, (error, result)=>{

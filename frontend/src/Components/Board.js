@@ -41,7 +41,7 @@ class Board extends React.Component{
             let board = [];
             data.forEach(record=>{
                 let button = <button onClick={(e)=>this.deleteNote(e, record.id)}>Delete</button>;
-                board.push(<Note key={record.id} id={record.id} button={button} title={record.title} description={record.description}/>);
+                board.push(<Note key={record.id} id={record.id} button={button}/>);
             });
             this.setState({
                 listOfNotes:board
